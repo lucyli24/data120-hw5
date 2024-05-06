@@ -27,9 +27,9 @@ def bisection_root(func, x1, x2):
     f1, f2 = func(x1), func(x2)
     if f1*f2 > 0:
         raise ValueError
-    if abs(f1) <= 0.001:
+    if abs(f1) <= 0.0000001:
         return x1
-    elif abs(f2) <= 0.001:
+    elif abs(f2) <= 0.0000001:
         return x2
     else:
         x_mid = (x1+x2)/2
@@ -41,7 +41,8 @@ def bisection_root(func, x1, x2):
             return bisection_root(func, x_mid, x2)
         else:
             raise ValueError("The bisection method failed to find a root.")
-    
+
+import math
 
 
     
