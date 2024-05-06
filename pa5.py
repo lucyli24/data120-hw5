@@ -1,31 +1,36 @@
 def gcd(a, b):
+    '''
+    Finding the greatest common divisor of two natural numbers
+    '''
     if b == 0:
         return a
+    if a >= b:
+        nw = gcd(b, a%b)
     else:
-        if a >= b:
-            nw = gcd(b, a%b)
-        else:
-            a, b = b, a
-            nw = gcd(b, a%b)
+        a, b = b, a
+        nw = gcd(b, a%b)
     return nw
 
 
-def remove_pairs(str):
-    if len(str) <= 1:
-        return str
-
-    else:
-        if (str[0] == 'E' and str[1] == 'W') or \
-           (str[0] == 'W' and str[1] == 'E') or \
-           (str[0] == 'S' and str[1] == 'N') or \
-           (str[0] == 'N' and str[1] == 'S'):
-            return remove_pairs(str[2:])
-
-        else:
-            return str[0] + remove_pairs(str[1:])
+def remove_pairs(path):
+    '''
+    Take in a direction string path, and return a direction
+    string such that all “turnaround pairs” have been removed
+    '''
+    if len(path) <= 1:
+        return path
+    if (path[0] == 'E' and path[1] == 'W') or \
+        (path[0] == 'W' and path[1] == 'E') or \
+        (path[0] == 'S' and path[1] == 'N') or \
+        (path[0] == 'N' and path[1] == 'S'):
+        return remove_pairs(path[2:])
+    return path[0] + remove_pairs(path[1:])
 
 
 def bisection_root(func, x1, x2):
+    '''
+    Use bisection method to find a root (zero or x-intercept) of a function
+    '''
     f1, f2 = func(x1), func(x2)
     if f1*f2 > 0:
         raise ValueError
