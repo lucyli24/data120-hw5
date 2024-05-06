@@ -5,10 +5,10 @@ def gcd(a, b):
     if b == 0:
         return a
     if a >= b:
-        nw = gcd(b, a%b)
+        nw = gcd(b, a % b)
     else:
         a, b = b, a
-        nw = gcd(b, a%b)
+        nw = gcd(b, a % b)
     return nw
 
 
@@ -20,9 +20,9 @@ def remove_pairs(path):
     if len(path) <= 1:
         return path
     if (path[0] == 'E' and path[1] == 'W') or \
-        (path[0] == 'W' and path[1] == 'E') or \
-        (path[0] == 'S' and path[1] == 'N') or \
-        (path[0] == 'N' and path[1] == 'S'):
+       (path[0] == 'W' and path[1] == 'E') or \
+       (path[0] == 'S' and path[1] == 'N') or \
+       (path[0] == 'N' and path[1] == 'S'):
         return remove_pairs(path[2:])
     return path[0] + remove_pairs(path[1:])
 
@@ -48,4 +48,3 @@ def bisection_root(func, x1, x2):
             return bisection_root(func, x_mid, x2)
         else:
             raise ValueError("The bisection method failed to find a root.")
-        
